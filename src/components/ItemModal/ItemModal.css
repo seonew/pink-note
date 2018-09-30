@@ -1,0 +1,110 @@
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  display: block;
+}
+
+#modal {
+  position: relative;
+  /* display: none; */
+  width: 200px;
+  height: 200px;
+  background: #8fd9c2;
+  z-index: 99;
+  overflow: auto;
+}
+
+#modal .modal-content {
+  position: relative;
+  margin: 35px auto;
+}
+
+.modal-header {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  top: 0px;
+  left: 0px;
+}
+
+#modal span#close {
+  position: fixed;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  top: 3%;
+  right: 4%;
+  cursor: pointer;
+}
+
+#close::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#close::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#close::before,
+#close::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #000;
+}
+
+
+#loader {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #b6c1ff;
+  border-top: 5px solid #ff6a80;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: fade-in 0.5s linear, spin 2s linear infinite;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
