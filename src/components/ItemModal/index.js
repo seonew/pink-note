@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ItemModal.css';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class ItemModal extends React.Component {
 
@@ -21,7 +22,7 @@ class ItemModal extends React.Component {
             <div className="modal-header">
               <span id="close"></span>
             </div>
-            <div className="modal-content">{contents}</div>
+            <div className="modal-content">{ReactHtmlParser(contents)}</div>
           </div>
         </div>
       </React.Fragment>
