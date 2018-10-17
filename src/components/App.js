@@ -44,23 +44,27 @@ class App extends Component {
     this.closeNoteModal();
   }
 
+  handleMoreButtonClick(currentPage) {
+    this.update(++currentPage);
+  }
+
   render() {
-    const { notes, currentNoteContents, noteModalOpened } = this.state;
+    const { notes, currentNoteContents, noteModalOpened, pageNo } = this.state;
     const onItemClickCallback = this.handleNoteClick.bind(this);
     const onBodyClickCallback = this.handleBodyClick.bind(this);
+    const onMoreItemClickCallback = this.handleMoreButtonClick.bind(this);
     
     return (
       <div onClick = {onBodyClickCallback}>
         <Header/>
         <ItemList data = {notes} onItemClick = {onItemClickCallback} />
         <ItemModal contents = {currentNoteContents} opened = {noteModalOpened} />
-        <MoreButton/>
+        <MoreButton currentPageNo = {pageNo} onMoreItemClick = {onMoreItemClickCallback} />
       </div>
     );
   }
 
   update(pageParam) {
-
     if (typeof pageParam === "undefined") {
       pageParam = 1;
     }
@@ -75,6 +79,8 @@ class App extends Component {
       return false;
     }
     
+    this.state.pageNo = pageParam;
+
     this.httpRequest.onreadystatechange = this.updateView.bind(this);
     this.httpRequest.open(
       "POST",
@@ -113,6 +119,16 @@ class App extends Component {
         };
       }
 
+      if(this.state.pageNo != 1){
+        obj.pageNo = this.state.pageNo;
+
+        for (let i = 0; i < obj.notes.length; i++) {
+          this.state.notes.push(obj.notes[i])
+        }
+
+        obj.notes = this.state.notes;
+      }
+      
       this.setState(obj);
     }
   }
