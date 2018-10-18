@@ -79,7 +79,7 @@ class App extends Component {
       return false;
     }
     
-    this.state.pageNo = pageParam;
+    this.setState({pageNo : pageParam});
 
     this.httpRequest.onreadystatechange = this.updateView.bind(this);
     this.httpRequest.open(
@@ -119,16 +119,17 @@ class App extends Component {
         };
       }
 
-      if(this.state.pageNo != 1){
+      if(typeof this.state.pageNo === "number" && this.state.pageNo !== 1){
         obj.pageNo = this.state.pageNo;
 
+        let newNotes = this.state.notes;
         for (let i = 0; i < obj.notes.length; i++) {
-          this.state.notes.push(obj.notes[i])
+          newNotes.push(obj.notes[i])
         }
-
+        this.setState({notes : newNotes});
         obj.notes = this.state.notes;
       }
-      
+
       this.setState(obj);
     }
   }
