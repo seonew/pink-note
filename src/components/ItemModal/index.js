@@ -1,24 +1,16 @@
 import React from 'react';
-import styles from './ItemModal.css';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import './ItemModal.css';
+import ReactHtmlParser from 'react-html-parser';
 
 class ItemModal extends React.Component {
 
   render () {
     const { contents, opened } = this.props;
 
-    let className = "";
-    if (!opened) {
-      className = "hidden";
-    }
-    else {
-      className = "";
-    }
-    
     return (
       <React.Fragment>
         <div className="modal-container">
-          <div id="modal" className={className}>
+          <div id="modal" className={ !opened ? "hidden" : "" }>
             <div className="modal-header">
               <span id="close"></span>
             </div>

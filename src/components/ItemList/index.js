@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Item.css';
+// import './Item.css';
 import Item from '../Item';
 
 class ItemList extends React.Component {
@@ -9,18 +9,18 @@ class ItemList extends React.Component {
     onItemClick(note);
   }
 
-  render () {
+  render() {
     const { data } = this.props;
     const onClickCallback = this.handleItemClick.bind(this);
 
     const list = data.map(
-      note => (<Item key = {note.id} note = {note} onClick = {onClickCallback}/>)
+      note => (<Item key={note.id} note={note} onClick={onClickCallback} />)
     );
 
     return (
       <React.Fragment>
         <div className="item-list">
-          { list } 
+          {list} 
         </div>
       </React.Fragment>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MoreButton.css';
+import './MoreButton.css';
 
 class MoreButton extends React.Component {
 
@@ -13,7 +13,7 @@ class MoreButton extends React.Component {
 
     return (
       <React.Fragment>
-        <div id="more-button" onClick = {onClickCallback}>
+        <div id="more-button" onClick={onClickCallback}>
           <span>MORE</span>
         </div>
       </React.Fragment>
@@ -22,4 +22,3 @@ class MoreButton extends React.Component {
 }
 
 export default MoreButton;
-

@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './Item.css';
+import './Item.css';
 
 class Item extends React.Component {
   
   handleClick(event) {
     const { onClick } = this.props;
-    const { title, date, contents } = this.props.note;
+    const { contents } = this.props.note;
     const note = {
       contents: contents
     };
@@ -20,10 +20,10 @@ class Item extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="item" onClick = {onClickCallback} >
-          <p className="title">{ title }</p>
-          <span className="date">{ this.getDate(date) }</span>
-          <span className="blind"> { contents }</span>
+        <div className="item" onClick={onClickCallback} >
+          <p className="title">{title}</p>
+          <span className="date">{this.getDate(date)}</span>
+          <span className="blind"> {contents}</span>
         </div>
       </React.Fragment>
     );
