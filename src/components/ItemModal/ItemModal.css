@@ -75,36 +75,3 @@
   margin-top: -1px;
   background: #000;
 }
-
-
-#loader {
-  position: fixed;
-  display: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 5px solid #b6c1ff;
-  border-top: 5px solid #ff6a80;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: fade-in 0.5s linear, spin 2s linear infinite;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}

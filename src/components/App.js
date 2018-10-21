@@ -4,6 +4,7 @@ import Header from './Header';
 import ItemList from './ItemList';
 import ItemModal from './ItemModal';
 import MoreButton from './MoreButton';
+import Loader from './Loader';
 
 class App extends Component {
 
@@ -15,10 +16,14 @@ class App extends Component {
       noteCount: 10,
       notes: [],
       noteModalOpened: false,
-      currentNoteContents: null
+      currentNoteContents: null,
+      loading: false
     }
-
+    
     this.httpRequest = new XMLHttpRequest();
+  }
+
+  componentDidMount() {
     this.update();
   }
 
@@ -45,11 +50,14 @@ class App extends Component {
   }
 
   handleMoreButtonClick(currentPage) {
+    this.setState({loading: true});
     this.update(++currentPage);
+
+    setTimeout(() => {this.setState({loading: false})}, 2000)
   }
 
   render() {
-    const { notes, currentNoteContents, noteModalOpened, pageNo } = this.state;
+    const { notes, currentNoteContents, noteModalOpened, pageNo, loading } = this.state;
     const onItemClickCallback = this.handleNoteClick.bind(this);
     const onBodyClickCallback = this.handleBodyClick.bind(this);
     const onMoreItemClickCallback = this.handleMoreButtonClick.bind(this);
@@ -60,6 +68,7 @@ class App extends Component {
         <ItemList data = {notes} onItemClick = {onItemClickCallback} />
         <ItemModal contents = {currentNoteContents} opened = {noteModalOpened} />
         <MoreButton currentPageNo = {pageNo} onMoreItemClick = {onMoreItemClickCallback} />
+        <Loader loading = {loading}/>
       </div>
     );
   }
